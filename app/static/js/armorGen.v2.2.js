@@ -1,4 +1,4 @@
-var numerals = ['','I','II','III','IV','V','VI']
+var numerals = ['','I','II','III','IV','V','VI'];
 
 var armorNameLight1 = [
   "AbadarCorp",
@@ -32,8 +32,8 @@ var armorNameLight1 = [
   "Utility",
   "Variable",
   "Ysoki",
-  "Zephyr",
-]
+  "Zephyr"
+];
 
 var armorNameLight2 = [
   "A","B","C","D",
@@ -63,7 +63,7 @@ var armorNameLight2 = [
   "Undersuit",
   "Unisuit",
   "Vest"
-]
+];
 
 var armorNameHeavy1 = [
   "Aegis",
@@ -95,7 +95,7 @@ var armorNameHeavy1 = [
   "Voidshield",
   "Warrior"
 
-]
+];
 
 var armorNameHeavy2 = [
   "Armor",
@@ -124,7 +124,7 @@ var armorNameHeavy2 = [
   "Supermesh",
   "Super Suit",
   "Thinplate"
-]
+];
 
 var flavorTextLight = [
   "Is made from a high tech material that looks and feels like a t-shirt",
@@ -146,8 +146,8 @@ var flavorTextLight = [
   "Comes with a matching cape",
   "Is skin-tight",
   "Has no sleeves"
+];
 
-]
 var flavorTextAll = [
   "Was hand crafted with great care ",
   "Is mostly grey and metallic with a utilitarian look.",
@@ -182,7 +182,7 @@ var flavorTextAll = [
   "Is covered in nicks and scratches",
   "Is as pristine as the day it left the factory",
   "Has the name “Mungus” scrawled on the collar"
-]
+];
 
 var flavorTextHeavy = [
   "Absorbs the bulk of kinetic damage through energy dampeners",
@@ -211,7 +211,7 @@ var flavorTextHeavy = [
   "Is slightly sticky on the inside",
   "Is corrupted by rust",
   "Has “Property of Absalom Station Security” stamped on the collar"
-]
+];
 
 var indexCounter = 0;
 
@@ -230,12 +230,12 @@ function getPrice(level) {
   var rounding;
   var finish;
   var base = basePrice[level - 1];
-  if (level == 1){
+  if (level === 1){
     variance = priceVariance["0.7"].selectRandom() * base;
     rounding = 10;
     finish = [0,5,-5].selectRandom();
   }
-  else if (level == 2) {
+  else if (level === 2) {
     variance = priceVariance["0.2"].selectRandom() * base;
     rounding = 10;
     finish = [0,5,-5].selectRandom();
@@ -250,12 +250,12 @@ function getPrice(level) {
     rounding = 100;
     finish = [0,100,-100].selectRandom();
   }
-  else if (level == 20) {
+  else if (level === 20) {
     variance = priceVariance["0.2"].selectRandom() * base;
     rounding = 100;
     finish = [0,100,-100].selectRandom();
   }
-  price = (Math.floor((base + variance)/rounding)*rounding) + finish
+  price = (Math.floor((base + variance)/rounding)*rounding) + finish;
   return price;
 }
 
@@ -294,7 +294,7 @@ function printPanel(level,name,type,eac,kac,dex,acheck,speed,slots,bulk) {
   $outputArea.empty();
 
   indexCounter += 1;
-  indexString = "index" + indexCounter.toString();
+  var indexString = "index" + indexCounter.toString();
 
   var panelTitle =  "Level " + level + " " + name;
   var panelBody =   "<h5 class=\"text-muted text-muted-one\">" + type + "</h5>" +
@@ -306,7 +306,7 @@ function printPanel(level,name,type,eac,kac,dex,acheck,speed,slots,bulk) {
                     "<br><b>Speed Adjustment: </b>" + speed +
                     "<br><b>Upgrade Slots: </b>" + slots +
                     "<br><b>Bulk: </b>" + bulk + "</p>" +
-                    "<h5 class=\"text-muted text-muted-one\"><i>This " + type.toLowerCase() + " " + flavorTextAll.concat(type == "Light armor" ? flavorTextLight : flavorTextHeavy).selectRandom().toLowerCase() + "</i></h5>"
+                    "<h5 class=\"text-muted text-muted-one\"><i>This " + type.toLowerCase() + " " + flavorTextAll.concat(type === "Light armor" ? flavorTextLight : flavorTextHeavy).selectRandom().toLowerCase() + "</i></h5>";
 
   $outputArea.append("<div class=\"panel " + indexString + "\">");
   var $panel = $(".panel."+indexString).first();
@@ -316,7 +316,7 @@ function printPanel(level,name,type,eac,kac,dex,acheck,speed,slots,bulk) {
   $index.append(panelBody);
   $index.append("<button type=\"button\" id=\""+indexString+"\"class=\"btn btn-default btn-sm btn-notblack pull-right\" onclick = \"removeEntry(this.id)\">Remove</button>");
 
-  if (storeOutput != ""){
+  if (storeOutput !== ""){
     $outputArea.append(storeOutput);
   }
 }
@@ -355,7 +355,7 @@ function generateArmor() {
     armor = armorDrop;
   }
 
-  if (armor == "Light armor") {
+  if (armor === "Light armor") {
 
     //name
     name = armorNameLight1.selectRandom() + " " + armorNameLight2.selectRandom();
@@ -396,7 +396,7 @@ function generateArmor() {
     //bulk
     bulk = ['L','L','1'].selectRandom();
   }
-  else if (armor == "Heavy armor"){
+  else if (armor === "Heavy armor"){
 
     //name
     name = armorNameHeavy1.selectRandom() + " " + armorNameHeavy2.selectRandom();
